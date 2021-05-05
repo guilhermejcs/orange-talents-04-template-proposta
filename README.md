@@ -45,3 +45,18 @@ Projeto gerado com as tecnologias sugeridas:
 
 ------
 
+## Setup do Projeto - Infraestrutura
+
+### Tag: v001
+
+### Objetivo
+
+Nosso objetivo aqui é preparar a nossa *"infraestrutura local"* para nos conectarmos com ela quando for necessário. Vamos usar o docker-compose para isso!!! Vamos lá!!
+
+### Descrição
+
+Durante o ciclo de desenvolvimento do nosso projeto Proposta, vamos precisar nos conectar alguns serviços externos como por exemplo banco de dados, serviços legados e outros. Não vamos criar esses serviços vamos usá-los somente, então podemos entendê-los como uma "caixa preta".
+
+### Resultado Esperado
+
+- Todos nossos containers de infraestrutura no estado **Running**
