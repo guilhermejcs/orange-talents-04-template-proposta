@@ -3,7 +3,7 @@
 ## Tecnologias:
 
 * Java 11
-* Spring boots 2.3.10
+* Spring boots 2.4.5
 * Maven
 
 ------
@@ -60,3 +60,38 @@ Durante o ciclo de desenvolvimento do nosso projeto Proposta, vamos precisar nos
 ### Resultado Esperado
 
 - Todos nossos containers de infraestrutura no estado **Running**
+
+------
+
+## Criação de uma nova proposta
+
+### Tag: v005
+
+### Objetivo
+
+Realizar a criação de uma proposta, durante o processo de criação da proposta deve ser checado restrições ao solicitante da proposta.
+
+### Necessidades
+
+- O documento necessário deve ser o CPF/CNPJ
+- email
+- nome
+- endereço
+- salário
+
+### Restrições
+
+- documento do solicitante deve ser obrigatório e válido
+- email não pode ser vazio, nulo ou inválido
+- nome não pode ser vazio ou nulo
+- endereço não pode ser vazio ou nulo
+- salário bruto não pode ser vazio, nulo ou negativo
+
+### Resultado Esperado
+
+- A proposta deve estar armazenada no sistema, com um identificador gerado pelo sistema.
+- Retornar **201** com Header Location preenchido com a URL da nova proposta em caso de sucesso.
+- Retornar **400** quando violado alguma das restrições.
+
+------
+
