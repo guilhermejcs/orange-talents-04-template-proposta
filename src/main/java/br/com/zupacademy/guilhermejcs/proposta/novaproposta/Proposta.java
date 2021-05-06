@@ -24,6 +24,9 @@ public class Proposta {
     @NotBlank
     private String documento;
 
+    public Proposta() {
+    }
+
     public Proposta(@Email @NotBlank String email,
                     @NotBlank String nome,
                     @NotBlank String endereco,
