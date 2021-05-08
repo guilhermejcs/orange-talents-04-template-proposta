@@ -21,7 +21,7 @@ public class Proposta {
     @NotBlank
     private String documento;
     @Enumerated(EnumType.STRING)
-    private avaliacao status;
+    private Avaliacao status;
 
     public Proposta() {
     }
@@ -40,5 +40,9 @@ public class Proposta {
 
     public Long getId() {
         return id;
+    }
+
+    public void setStatus(Avaliacao status) {
+        this.status = status;
     }
 }
