@@ -1,9 +1,17 @@
 package br.com.zupacademy.guilhermejcs.proposta.consultaproposta;
 
+import br.com.zupacademy.guilhermejcs.proposta.novaproposta.CpfCnpj;
+
+import javax.validation.constraints.NotBlank;
+
 public class ConsultaResquest {
 
+    @NotBlank
+    @CpfCnpj
     String documento;
+    @NotBlank
     String nome;
+    @NotBlank
     String idProposta;
 
     public ConsultaResquest() {
@@ -15,19 +23,9 @@ public class ConsultaResquest {
         this.idProposta = idProposta;
     }
 
-    @Override
-    public String toString() {
-        return "ConsultaResquest{" +
-                "documento='" + documento + '\'' +
-                ", nome='" + nome + '\'' +
-                ", idProposta='" + idProposta + '\'' +
-                '}';
+    public Consulta toModel() {
+        return new Consulta(this.documento, this.nome, this.idProposta);
     }
-
-    public Consulta toModel(){
-        return new Consulta(this.documento,this.nome,this.idProposta);
-    }
-
 
     public void setDocumento(String documento) {
         this.documento = documento;

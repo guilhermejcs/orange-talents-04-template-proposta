@@ -2,7 +2,6 @@ package br.com.zupacademy.guilhermejcs.proposta.consultaproposta;
 
 public class Consulta {
 
-
     private String documento;
     private String nome;
     private String resultadoSolicitacao;
@@ -17,7 +16,29 @@ public class Consulta {
         this.idProposta = idProposta;
     }
 
-    public void setResultadoSolicitacao(String resultadoSolicitacao) {
-        this.resultadoSolicitacao = resultadoSolicitacao;
+    public String getDocumento() {
+        return documento;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getResultadoSolicitacao() {
+        return resultadoSolicitacao;
+    }
+
+    public String getIdProposta() {
+        return idProposta;
+    }
+
+    @Override
+    public String toString() {
+        return "Consulta{" +
+                "documento='" + documento + '\'' +
+                ", nome='" + nome + '\'' +
+                ", resultadoSolicitacao='" + resultadoSolicitacao + '\'' +
+                ", idProposta='" + idProposta + '\'' +
+                '}';
     }
 }

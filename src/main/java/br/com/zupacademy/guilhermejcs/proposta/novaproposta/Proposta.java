@@ -1,9 +1,6 @@
 package br.com.zupacademy.guilhermejcs.proposta.novaproposta;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Positive;
@@ -23,6 +20,8 @@ public class Proposta {
     @CpfCnpj
     @NotBlank
     private String documento;
+    @Enumerated(EnumType.STRING)
+    private avaliacao status;
 
     public Proposta() {
     }
