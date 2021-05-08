@@ -112,3 +112,34 @@ Não podemos permitir que tenha mais de uma proposta para o mesmo solicitante, o
 
 ------
 
+## Consultando dados do solicitante
+
+### Tag: v
+
+### Objetivo
+
+Devemos consultar alguns dados financeiros do solicitante afim de validar se sera possivel oferecer um cartão.
+
+### Necessidades
+
+Antes de provisionar um cartão para o solicitante, devemos verificar se o mesmo possui restrições no sistema de dados finaneiros.
+
+Temos uma API específica para consultar os dados financeiros, vamos analisá-la?
+
+```
+http://localhost:9999/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config#/
+```
+
+### Restrições
+
+- O documento deve ser passado no body da requisição por motivo de segurança, header and query parameters nao são criptografados
+  - CPF/CNPJ
+- O nome deve ser passado no body
+- O identificador da proposta deve ser passado no body
+
+### Resultado Esperado
+
+No processo de Criação da Proposta deve considerar o status recebido da avaliação financeira do solicitante.
+
+- Caso a devolutiva da analise for o estado **COM_RESTRICAO** o estado da proposta deve ser **NAO_ELEGIVEL**
+- Caso a devolutiva da analise for o estado **SEM_RESTRICAO** o estado da proposta deve ser **ELEGIVEL**
