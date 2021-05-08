@@ -114,7 +114,7 @@ Não podemos permitir que tenha mais de uma proposta para o mesmo solicitante, o
 
 ## Consultando dados do solicitante
 
-### Tag: v
+### Tag: v015
 
 ### Objetivo
 
@@ -143,3 +143,20 @@ No processo de Criação da Proposta deve considerar o status recebido da avalia
 
 - Caso a devolutiva da analise for o estado **COM_RESTRICAO** o estado da proposta deve ser **NAO_ELEGIVEL**
 - Caso a devolutiva da analise for o estado **SEM_RESTRICAO** o estado da proposta deve ser **ELEGIVEL**
+
+------
+
+## Melhorando a visibilidade da nossa aplicação para equipe de operação (Health Check)
+
+### Tag: v020
+
+### Objetivo
+
+Nossa aplicação deve "mostrar" a saúde dela para algum sistema automático de monitoramento ou equipe de operação!
+
+### Resultado Esperado
+
+Criação de um endpoint HTTP (REST) que "informe" a saúde da nossa aplicação.
+
+- API deve retornar o status code 200 quando tudo estiver ok
+- API deve retornar o status code 5xx quando algum componente de nossa infraestrutura estiver com mal-funcionamento (ex: banco de dados ou algum broker de mensagens)
