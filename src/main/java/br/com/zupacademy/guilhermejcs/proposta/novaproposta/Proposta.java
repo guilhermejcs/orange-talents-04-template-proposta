@@ -22,6 +22,7 @@ public class Proposta {
     private String documento;
     @Enumerated(EnumType.STRING)
     private Avaliacao status;
+    private String idCartao;
 
     public Proposta() {
     }
@@ -42,7 +43,27 @@ public class Proposta {
         return id;
     }
 
+    public String getDocumento() {
+        return documento;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
     public void setStatus(Avaliacao status) {
         this.status = status;
+    }
+
+    public void setIdCartao(String idCartao) {
+        this.idCartao = idCartao;
+    }
+
+    @Override
+    public String toString() {
+        return "Proposta{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                '}';
     }
 }
