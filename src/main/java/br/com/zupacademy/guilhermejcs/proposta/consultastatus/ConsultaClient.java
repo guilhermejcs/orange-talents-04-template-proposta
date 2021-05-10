@@ -1,4 +1,4 @@
-package br.com.zupacademy.guilhermejcs.proposta.consultaproposta;
+package br.com.zupacademy.guilhermejcs.proposta.consultastatus;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;

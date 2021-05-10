@@ -200,3 +200,26 @@ http://localhost:8888/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-confi
 - Quando o sistema de accounts(cartões) retornar sucesso (status code na faixa 200) o número de cartão deve ser atrelado a proposta.
   - O **número do carto** é o **id** do cartão retornado na resposta do sistema de accounts(cartões)
 - Quando o sistema de accounts(cartões) retornar falha (status code na faixa 400 ou 500) não atualizar o estado da proposta, pois ainda não foi processado, aguardar próxima interação.
+
+------
+
+## Acompanhamento da Proposta
+
+### Tag: v035
+
+### Objetivo
+
+Criação de um endpoint que informe os dados da proposta.
+
+### Necessidades
+
+O solicitante pode consultar o estado da sua proposta.
+
+### Restrições
+
+Identificador da proposta é obrigatório na URL.
+
+### Resultado Esperado
+
+- Retornar status code **200** com a proposta no corpo da resposta.
+- Retornar status code **404** quando a proposta não existir.

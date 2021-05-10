@@ -43,12 +43,32 @@ public class Proposta {
         return id;
     }
 
-    public String getDocumento() {
-        return documento;
+    public String getEmail() {
+        return email;
     }
 
     public String getNome() {
         return nome;
+    }
+
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public BigDecimal getSalario() {
+        return salario;
+    }
+
+    public String getDocumento() {
+        return documento;
+    }
+
+    public Avaliacao getStatus() {
+        return status;
+    }
+
+    public String getIdCartao() {
+        return idCartao;
     }
 
     public void setStatus(Avaliacao status) {
@@ -63,7 +83,21 @@ public class Proposta {
     public String toString() {
         return "Proposta{" +
                 "id=" + id +
+                ", email='" + email + '\'' +
+                ", nome='" + nome + '\'' +
+                ", endereco='" + endereco + '\'' +
+                ", salario=" + salario +
+                ", documento='" + documento + '\'' +
+                ", status=" + status +
+                ", idCartao='" + idCartao + '\'' +
+                '}';
+    }
+
+    public String toStringReduzida() {
+        return "Proposta{" +
+                "id=" + id +
                 ", nome='" + nome + '\'' +
                 '}';
     }
+
 }

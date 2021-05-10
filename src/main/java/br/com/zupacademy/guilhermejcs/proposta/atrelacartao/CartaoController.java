@@ -30,8 +30,8 @@ public class CartaoController {
     @Transactional
     public ResponseEntity<?> atrelaCartao() {
         List<Proposta> propostas = novaPropostaRepository.findByIdCartao(null);
-        List<Proposta> atualizadas = new ArrayList<>();
-        List<Proposta> naoAtualizadas = new ArrayList<>();
+        List<String> atualizadas = new ArrayList<>();
+        List<String> naoAtualizadas = new ArrayList<>();
 
         for (Proposta proposta : propostas) {
             CartaoRequest request = new CartaoRequest(proposta.getDocumento(), proposta.getNome(), proposta.getId());
@@ -41,9 +41,9 @@ public class CartaoController {
                 idCartao = cartaoClient.cartao(request);
                 proposta.setIdCartao(idCartao.get().id);
                 manager.persist(proposta);
-                atualizadas.add(proposta);
+                atualizadas.add(proposta.toStringReduzida());
             } catch (Exception handlerException) {
-                naoAtualizadas.add(proposta);
+                naoAtualizadas.add(proposta.toStringReduzida());
                 System.out.println("Não foi possível atualizar a proposta: "
                         + proposta.getId() + " - nome: " + proposta.getNome());
             }

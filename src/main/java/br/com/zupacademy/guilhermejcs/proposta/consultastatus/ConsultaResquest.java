@@ -1,4 +1,4 @@
-package br.com.zupacademy.guilhermejcs.proposta.consultaproposta;
+package br.com.zupacademy.guilhermejcs.proposta.consultastatus;
 
 import br.com.zupacademy.guilhermejcs.proposta.novaproposta.CpfCnpj;
 
