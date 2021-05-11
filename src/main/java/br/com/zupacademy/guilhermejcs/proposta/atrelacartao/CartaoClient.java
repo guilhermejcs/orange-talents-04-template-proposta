@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.Optional;
 
-@FeignClient(name = "cartao", url = "http://localhost:8888")
+@FeignClient(name = "cartao", url = "${CARTAO_CLIENT}")
 public interface CartaoClient {
 
     @PostMapping(value = "/api/cartoes")

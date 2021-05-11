@@ -39,6 +39,13 @@ public class Proposta {
         this.documento = documento;
     }
 
+    public Proposta(Long id, String documento, Avaliacao status, String idCartao) {
+        this.id = id;
+        this.documento = documento;
+        this.status = status;
+        this.idCartao = idCartao;
+    }
+
     public Long getId() {
         return id;
     }

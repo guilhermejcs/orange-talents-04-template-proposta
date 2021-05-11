@@ -15,4 +15,6 @@ public interface NovaPropostaRepository extends JpaRepository<Proposta, Long> {
     Optional<Proposta> findByDocumento(@CpfCnpj String documento);
 
     List<Proposta> findByIdCartao(String idCartao);
+
+    List<Proposta> findByIdCartaoAndStatus(String idCartao, Avaliacao Status);
 }

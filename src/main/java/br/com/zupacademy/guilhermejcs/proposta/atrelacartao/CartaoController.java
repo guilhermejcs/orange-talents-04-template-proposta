@@ -1,5 +1,6 @@
 package br.com.zupacademy.guilhermejcs.proposta.atrelacartao;
 
+import br.com.zupacademy.guilhermejcs.proposta.novaproposta.Avaliacao;
 import br.com.zupacademy.guilhermejcs.proposta.novaproposta.NovaPropostaRepository;
 import br.com.zupacademy.guilhermejcs.proposta.novaproposta.Proposta;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,8 @@ public class CartaoController {
     @Transactional
     @Scheduled(fixedDelayString = "${periodicidade.atrela-cartao}")
     public ResponseEntity<?> atrelaCartao() {
-        List<Proposta> propostas = novaPropostaRepository.findByIdCartao(null);
+        List<Proposta> propostas = novaPropostaRepository.findByIdCartaoAndStatus(null, Avaliacao.ELEGIVEL);
+
         List<String> atualizadas = new ArrayList<>();
         List<String> naoAtualizadas = new ArrayList<>();
 
