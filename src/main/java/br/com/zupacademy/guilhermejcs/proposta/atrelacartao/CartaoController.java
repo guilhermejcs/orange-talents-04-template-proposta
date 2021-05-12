@@ -44,7 +44,6 @@ public class CartaoController {
             try {
                 numeroCartao = cartaoClient.cartaoResponse(request);
                 Cartao novoCartao = new Cartao(numeroCartao.get().id,proposta);
-                //proposta.setCartao(novoCartao);
                 manager.persist(novoCartao);
                 atualizadas.add(proposta.toStringReduzida());
             } catch (Exception handlerException) {
