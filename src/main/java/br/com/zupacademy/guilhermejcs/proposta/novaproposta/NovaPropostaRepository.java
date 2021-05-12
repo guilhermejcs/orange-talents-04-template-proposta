@@ -1,5 +1,6 @@
 package br.com.zupacademy.guilhermejcs.proposta.novaproposta;
 
+import br.com.zupacademy.guilhermejcs.proposta.atrelacartao.Cartao;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.OAuth2ResourceServerProperties;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -14,7 +15,5 @@ public interface NovaPropostaRepository extends JpaRepository<Proposta, Long> {
 
     Optional<Proposta> findByDocumento(@CpfCnpj String documento);
 
-    List<Proposta> findByIdCartao(String idCartao);
-
-    List<Proposta> findByIdCartaoAndStatus(String idCartao, Avaliacao Status);
+    List<Proposta> findByCartaoAndStatus(Cartao cartao, Avaliacao Status);
 }

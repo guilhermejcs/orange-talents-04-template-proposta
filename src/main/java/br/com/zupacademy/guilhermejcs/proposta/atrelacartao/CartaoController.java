@@ -32,7 +32,7 @@ public class CartaoController {
     @Transactional
     @Scheduled(fixedDelayString = "${periodicidade.atrela-cartao}")
     public ResponseEntity<?> atrelaCartao() {
-        List<Proposta> propostas = novaPropostaRepository.findByIdCartaoAndStatus(null, Avaliacao.ELEGIVEL);
+        List<Proposta> propostas = novaPropostaRepository.findByCartaoAndStatus(null, Avaliacao.ELEGIVEL);
 
         List<String> atualizadas = new ArrayList<>();
         List<String> naoAtualizadas = new ArrayList<>();
@@ -40,11 +40,12 @@ public class CartaoController {
         for (Proposta proposta : propostas) {
             CartaoRequest request = new CartaoRequest(proposta.getDocumento(), proposta.getNome(), proposta.getId());
 
-            Optional<Cartao> idCartao = null;
+            Optional<CartaoResponse> numeroCartao = null;
             try {
-                idCartao = cartaoClient.cartao(request);
-                proposta.setIdCartao(idCartao.get().id);
-                manager.persist(proposta);
+                numeroCartao = cartaoClient.cartaoResponse(request);
+                Cartao novoCartao = new Cartao(numeroCartao.get().id,proposta);
+                //proposta.setCartao(novoCartao);
+                manager.persist(novoCartao);
                 atualizadas.add(proposta.toStringReduzida());
             } catch (Exception handlerException) {
                 naoAtualizadas.add(proposta.toStringReduzida());

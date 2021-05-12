@@ -1,13 +1,32 @@
 package br.com.zupacademy.guilhermejcs.proposta.atrelacartao;
 
-public class Cartao {
-    String id;
+import br.com.zupacademy.guilhermejcs.proposta.novaproposta.Proposta;
 
-    public String getId() {
-        return id;
+import javax.persistence.*;
+
+@Entity
+public class Cartao {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String numeroCartao;
+    @OneToOne
+    private Proposta proposta;
+
+    public Cartao() {
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public Cartao(String numeroCartao, Proposta proposta) {
+        this.numeroCartao = numeroCartao;
+        this.proposta = proposta;
+    }
+
+    public String getNumeroCartao() {
+        return numeroCartao;
+    }
+
+    public void setNumeroCartao(String numeroCartao) {
+        this.numeroCartao = numeroCartao;
     }
 }

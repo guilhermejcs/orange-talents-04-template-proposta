@@ -10,6 +10,6 @@ import java.util.Optional;
 public interface CartaoClient {
 
     @PostMapping(value = "/api/cartoes")
-    Optional<Cartao> cartao(@RequestBody CartaoRequest request);
+    Optional<CartaoResponse> cartaoResponse(@RequestBody CartaoRequest request);
 
 }

@@ -45,12 +45,7 @@ public class NovaPropostaController {
     public ResponseEntity<?>  consulta(@PathVariable("id") Long id){
         Optional<Proposta> proposta = novaPropostaRepository.findById(id);
         if(proposta.isPresent()){
-            Proposta prop = proposta.get();
-            ConsultaPropostaDTO dto = new ConsultaPropostaDTO(prop.getId(),
-                    prop.getNome(),
-                    prop.getDocumento(),
-                    prop.getStatus(),
-                    prop.getIdCartao());
+            ConsultaPropostaResponse dto = new ConsultaPropostaResponse(proposta.get());
             return ResponseEntity.ok().body(dto);
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("A proposta com Id "+ id + " não existe.");

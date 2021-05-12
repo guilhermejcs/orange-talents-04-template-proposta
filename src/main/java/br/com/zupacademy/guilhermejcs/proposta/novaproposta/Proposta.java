@@ -1,5 +1,7 @@
 package br.com.zupacademy.guilhermejcs.proposta.novaproposta;
 
+import br.com.zupacademy.guilhermejcs.proposta.atrelacartao.Cartao;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -22,7 +24,8 @@ public class Proposta {
     private String documento;
     @Enumerated(EnumType.STRING)
     private Avaliacao status;
-    private String idCartao;
+    @OneToOne(mappedBy = "proposta",cascade = CascadeType.MERGE)
+    private Cartao cartao;
 
     public Proposta() {
     }
@@ -37,13 +40,6 @@ public class Proposta {
         this.endereco = endereco;
         this.salario = salario;
         this.documento = documento;
-    }
-
-    public Proposta(Long id, String documento, Avaliacao status, String idCartao) {
-        this.id = id;
-        this.documento = documento;
-        this.status = status;
-        this.idCartao = idCartao;
     }
 
     public Long getId() {
@@ -74,30 +70,37 @@ public class Proposta {
         return status;
     }
 
-    public String getIdCartao() {
-        return idCartao;
+    public Cartao getCartao() {
+        return cartao;
+    }
+
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
+
+    public void setSalario(BigDecimal salario) {
+        this.salario = salario;
+    }
+
+    public void setDocumento(String documento) {
+        this.documento = documento;
     }
 
     public void setStatus(Avaliacao status) {
         this.status = status;
     }
 
-    public void setIdCartao(String idCartao) {
-        this.idCartao = idCartao;
-    }
-
-    @Override
-    public String toString() {
-        return "Proposta{" +
-                "id=" + id +
-                ", email='" + email + '\'' +
-                ", nome='" + nome + '\'' +
-                ", endereco='" + endereco + '\'' +
-                ", salario=" + salario +
-                ", documento='" + documento + '\'' +
-                ", status=" + status +
-                ", idCartao='" + idCartao + '\'' +
-                '}';
+    public void setCartao(Cartao cartao) {
+        this.cartao = cartao;
     }
 
     public String toStringReduzida() {
