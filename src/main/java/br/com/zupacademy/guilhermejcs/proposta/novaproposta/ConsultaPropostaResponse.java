@@ -8,7 +8,7 @@ public class ConsultaPropostaResponse {
     private String status;
     private String cartao;
 
-    public ConsultaPropostaResponse(Proposta proposta) {
+    public void atribuirDados(Proposta proposta) {
         this.id = proposta.getId().toString();
         this.nome = proposta.getNome();
         this.documento = proposta.getDocumento();
@@ -24,14 +24,23 @@ public class ConsultaPropostaResponse {
         }
     }
 
-    @Override
-    public String toString() {
-        return "ConsultaPropostaResponse{" +
-                "id='" + id + '\'' +
-                ", nome='" + nome + '\'' +
-                ", documento='" + documento + '\'' +
-                ", status='" + status + '\'' +
-                ", cartao='" + cartao + '\'' +
-                '}';
+    public String getId() {
+        return id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getDocumento() {
+        return documento;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public String getCartao() {
+        return cartao;
     }
 }
