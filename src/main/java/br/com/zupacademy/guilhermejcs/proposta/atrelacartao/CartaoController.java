@@ -28,7 +28,7 @@ public class CartaoController {
     @Autowired
     CartaoClient cartaoClient;
 
-    @GetMapping(value = "/cartao")
+    @GetMapping(value = "/cartoes")
     @Transactional
     @Scheduled(fixedDelayString = "${periodicidade.atrela-cartao}")
     public ResponseEntity<?> atrelaCartao() {

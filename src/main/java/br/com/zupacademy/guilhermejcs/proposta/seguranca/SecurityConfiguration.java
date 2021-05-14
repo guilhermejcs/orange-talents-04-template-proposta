@@ -14,8 +14,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests(authorizeRequests ->
                 authorizeRequests
                         .antMatchers(HttpMethod.GET, "/propostas/**").hasAuthority("SCOPE_propostas")
-                        .antMatchers(HttpMethod.GET, "/cartao/**").hasAuthority("SCOPE_propostas")
-                        .antMatchers(HttpMethod.POST, "/cartao/**").hasAuthority("SCOPE_propostas")
+                        .antMatchers(HttpMethod.GET, "/cartoes/**").hasAuthority("SCOPE_propostas")
+                        .antMatchers(HttpMethod.POST, "/cartoes/**").hasAuthority("SCOPE_propostas")
                         .antMatchers(HttpMethod.POST, "/consultas/**").hasAuthority("SCOPE_cpropostas")
                         .antMatchers(HttpMethod.POST, "/propostas/**").hasAuthority("SCOPE_propostas")
                         .anyRequest().authenticated()

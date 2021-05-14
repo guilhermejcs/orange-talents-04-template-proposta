@@ -20,7 +20,7 @@ public class CriaBiometriaController {
     @Autowired
     private CartaoRepository cartaoRepository;
 
-    @PostMapping(value = "/cartao/{id}/biometria")
+    @PostMapping(value = "/cartoes/{id}/biometria")
     @Transactional
     public ResponseEntity<?> cria(@PathVariable("id") Long id,
                                   @RequestBody @Valid NovaBiometriaRequest request, UriComponentsBuilder builder) {
@@ -32,7 +32,7 @@ public class CriaBiometriaController {
             return ResponseEntity.badRequest().build();
         }
         cartao.get().adicionaBiometria(request.getDigital());
-        URI enderecoBiometria = builder.path("/cartao/{id}/biometria").build(cartao.get().getId());
+        URI enderecoBiometria = builder.path("/cartoes/{id}/biometria").build(cartao.get().getId());
 
         return ResponseEntity.created(enderecoBiometria).build();
     }
