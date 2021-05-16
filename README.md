@@ -302,3 +302,64 @@ Precisamos configurar nosso sistema para se comunicar com nosso servidor de aute
 ### Resultado Esperado
 
 Configuração do Spring Security na nossa aplicação com o módulo OAuth2 apontando para o nosso servidor de Autorização, nesse caso o Keycloak.
+
+------
+
+## Bloqueio do Cartão
+
+### Tag: v055
+
+### Objetivo
+
+Realizar o bloqueio do cartão.
+
+### Necessidades
+
+O usuário do cartão pode realizar o bloqueio do cartão por alguma suspeita de fraude.
+
+- Informar o identificador do cartão a ser bloqueado.
+- Armazenar o instante do bloqueio.
+- Armazenar o IP do cliente que fez a requisição.
+- Armazenar o User Agent do cliente que fez a requisição.
+
+### Restrições
+
+- Identificador do cartão é obrigatório e deve ser informado na URL (path parameter).
+- Caso o cartão estiver já bloqueado devemos retornar um erro de negócio.
+
+### Resultado Esperado
+
+- Bloqueio deve estar armazenada no sistema, com um identificador gerado pelo sistema.
+- Retornar **200** quando o bloqueio em caso de sucesso.
+- Retornar **400** quando violado alguma das restrições.
+- Retornar **422** quando violado alguma regra de negócio.
+- Retornar **404** quando o cartão não for encontrado.
+
+------
+
+## Notificando o sistema legado do bloqueio do nosso cartão
+
+### Tag: v060
+
+### Objetivo
+
+Precisamos notificar o sistema legado do banco, que houve um bloqueio no cartão. Para que de fato o cartão esteja bloqueado em todos os canais de venda.
+
+### Necessidades
+
+Notificar o sistema bancário que o usuário solicitou o bloqueio do cartão a fim de garantir o bloqueio em todos os canais de utilização do mesmo.
+
+Temos uma API específica para notificar o sistema bancário sobre o bloqueio do cartão, vamos analisá-la?
+
+```
+http://localhost:8888/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config#/
+```
+
+### Restrições
+
+Identificador do cartão é obrigatório.
+
+### Resultado Esperado
+
+- Quando o retorno do sistema bancário retornar sucesso (status code na faixa 200) devemos alterar o estado do cartão para "BLOQUEADO".
+- Quando o retorno do sistema bancário retornar erro (status code na faixa 400 ou 500) não devemos alterar o estado do cartão.

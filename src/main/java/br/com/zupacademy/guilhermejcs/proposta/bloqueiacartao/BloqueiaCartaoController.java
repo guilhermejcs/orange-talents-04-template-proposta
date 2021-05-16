@@ -18,6 +18,9 @@ import java.util.Optional;
 public class BloqueiaCartaoController {
 
     @Autowired
+    CartaoBloqueioClient cartaoBloqueioClient;
+
+    @Autowired
     private CartaoRepository cartaoRepository;
 
     @Autowired
@@ -60,9 +63,23 @@ public class BloqueiaCartaoController {
             return ResponseEntity.badRequest().body("IP Remoto não informado");
         }
 
+        CartaoBloqueioResponse bloqStatus = null;
+
+        CartaoBloqueioRequest requestBloq = new CartaoBloqueioRequest("string");
+        String numeroCartao = cartao.getNumeroCartao();
+        try {
+            bloqStatus = cartaoBloqueioClient.statusBloqueio(numeroCartao,requestBloq);
+        } catch (Exception e) {
+            return ResponseEntity.unprocessableEntity().body("Falha no sistema remoto");
+        }
+
+        if(!bloqStatus.equals("BLOQUEADO")){
+            return ResponseEntity.unprocessableEntity().body("Falha no sistema remoto");
+        }
+
         StatusUsoRequest request = new StatusUsoRequest(PossiveisStatusUso.BLOQUEADO, cartao, userAgent, ipRemoto);
         StatusUso cartaoBloqueio = request.toModel();
-
+        
         transacao.salvaEComita(cartaoBloqueio);
 
         return ResponseEntity.ok().body("Cartão com id " + id + " bloqueado com sucesso");
