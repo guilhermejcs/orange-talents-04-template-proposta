@@ -363,3 +363,35 @@ Identificador do cartão é obrigatório.
 
 - Quando o retorno do sistema bancário retornar sucesso (status code na faixa 200) devemos alterar o estado do cartão para "BLOQUEADO".
 - Quando o retorno do sistema bancário retornar erro (status code na faixa 400 ou 500) não devemos alterar o estado do cartão.
+
+------
+
+## Como saber se o nosso sistema está funcionando corretamente
+
+### Tag: v065
+
+### Objetivo
+
+Precisamos encontrar uma maneira eficiente de entender se o nosso sistema está funcionando da maneira "adequada".
+
+Imagine num ambiente com múltiplas instâncias do mesmo tipo de serviço, por exemplo 15 instâncias do serviço de TRANSACTIONS, conectar a cada instância e verificar o log de cada uma, pode não ser uma boa ideia.
+
+Armazenar métricas certamente não é uma responsabilidade do nosso serviço. Como podemos fazer isso?
+
+### Descrição
+
+Métricas são muito importantes num ambiente de sistemas distribuídos, expor para um sistema de coleta externa facilita a utilização da métrica de maneira mais efetiva, afinal não podemos armazenar métricas no serviço. Armazenar traria uma complexidade em lidar com dados no tempo "time series database", além de não fazer parte do nosso contexto de sistema.
+
+As métricas a serem expostas devem ser exclusivamente da única instância em questão, não precisamos saber de outras, afinal temos um sistema externo que lida com isso, só precisamos adicionar um identificador do nosso sistema, que na verdade e o provedor da métrica.
+
+Um bom ponto de partida em qual métrica exportar pode ser encontrado em: https://www.weave.works/blog/the-red-method-key-metrics-for-microservices-architecture/
+
+Precisamos aumentar a "visibilidade" do comportamento do sistema, assim a equipe de operação \ sustentação pode identificar qualquer anomalia nas nossas aplicações.
+
+### Necessidades
+
+Precisamos criar um endpoint HTTP REST para "mostrar" a métrica da instância para um serviço externo de armazenamento de métrica. Vamos usar o formato do Prometheus que é o padrão da Cloud Native Computing Foundation.
+
+### Resultado Esperado
+
+Endpoint com métricas expostas para uma futura coleta.

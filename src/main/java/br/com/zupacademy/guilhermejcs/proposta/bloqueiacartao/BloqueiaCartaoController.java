@@ -79,7 +79,7 @@ public class BloqueiaCartaoController {
 
         StatusUsoRequest request = new StatusUsoRequest(PossiveisStatusUso.BLOQUEADO, cartao, userAgent, ipRemoto);
         StatusUso cartaoBloqueio = request.toModel();
-        
+
         transacao.salvaEComita(cartaoBloqueio);
 
         return ResponseEntity.ok().body("Cartão com id " + id + " bloqueado com sucesso");
