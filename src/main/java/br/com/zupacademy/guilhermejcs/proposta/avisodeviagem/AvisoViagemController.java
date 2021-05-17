@@ -25,6 +25,9 @@ public class AvisoViagemController {
     private CartaoRepository cartaoRepository;
 
     @Autowired
+    AvisoViagemClient avisoViagemClient;
+
+    @Autowired
     private ExecutorTransacao transacao;
 
     @PostMapping(value = "/cartoes/{id}/aviso-viagem")
@@ -37,6 +40,18 @@ public class AvisoViagemController {
                 () -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
         AvisoViagem avisoViagem = new AvisoViagem(cartao, request.getDestino(), request.getDataTermino(), navegador, httpRequest.getRemoteAddr());
+
+        NovoAvisoViagemResponse avisoStatus = null;
+
+        try {
+            avisoStatus = avisoViagemClient.statusAviso(cartao.getNumeroCartao(),request);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
+        }
+
+        if(!avisoStatus.getResultado().equals("CRIADO")){
+            return ResponseEntity.badRequest().build();
+        }
 
         try {
             transacao.salvaEComita(avisoViagem);

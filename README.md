@@ -432,3 +432,34 @@ O portador do cartão pode realizar uma notificação para o banco, dizendo que 
 
 ------
 
+## Notificação do sistema bancário de aviso de viagem
+
+### Objetivo
+
+O sistema bancário precisa ser notificado que foi realizada uma notificação de aviso de viagem.
+
+### Tag: v080
+
+### Necessidades
+
+Realizar a confirmação da notificação do aviso de viagem para o sistema bancário. A chamada deve ser realizada para o sistema de accounts (cards).
+
+Temos uma API específica para notificar o sistema bancário sobre o aviso de viagem, vamos analisá-la?
+
+```
+http://localhost:8888/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config#/
+```
+
+### Restrições
+
+- Identificador do cartão é obrigatório e deve ser informado na URL (path parameter).
+- O destino da viagem é obrigatório, ou seja, não pode ser nulo ou vazio.
+- A data de validade da viagem é obrigatória, ou seja, não pode ser nulo ou uma data antiga.
+
+### Resultado Esperado
+
+- Quando o sistema bancário retornar sucesso (status code na faixa 200) o aviso deve ser armazenado no sistema.
+- Quando o sistema bancário retornar erro (status code na faixa 400 ou 500) o aviso de viagem não deve ser armazenado no sistema.
+
+------
+
