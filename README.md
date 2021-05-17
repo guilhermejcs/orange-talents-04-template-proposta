@@ -395,3 +395,40 @@ Precisamos criar um endpoint HTTP REST para "mostrar" a métrica da instância p
 ### Resultado Esperado
 
 Endpoint com métricas expostas para uma futura coleta.
+
+------
+
+## Aviso de Viagem
+
+### Tag: v075
+
+### Objetivo
+
+Cadastrar um aviso de viagem para o cartão.
+
+### Necessidades
+
+O portador do cartão pode realizar uma notificação para o banco, dizendo que pretende utilizar o cartão em um determinado destino, isso ajuda o banco no controle das fraudes.
+
+- Informar o identificador do cartão.
+- Informar o destino da viagem.
+- Informar a data do término da viagem.
+- Armazenar o instante do aviso de viagem.
+- Armazenar o IP do cliente que fez a requisição.
+- Armazenar o User Agent do cliente que fez a requisição.
+
+### Restrições
+
+- Identificador do cartão é obrigatório e deve ser informado na URL (path parameter).
+- O destino da viagem é obrigatório, ou seja, não pode ser nulo ou vazio.
+- A data do término da viagem é obrigatório, ou seja, não pode ser nulo ou uma data antiga.
+
+### Resultado Esperado
+
+- O aviso de viagem deve estar armazenada no sistema, com um identificador gerado pelo sistema.
+- Retornar **200** em caso de sucesso.
+- Retornar **400** quando violado alguma das restrições.
+- Retornar **404** quando o cartão não for encontrado.
+
+------
+
