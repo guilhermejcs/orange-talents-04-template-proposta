@@ -563,3 +563,20 @@ Informações sobre tracing presente em todas as requisições.
 
 ------
 
+## Rodando o Prometheus
+
+### Tag: v100
+
+### Objetivo
+
+Armazenar métricas é uma responsabilidade externa do seu software, existem ferramentas especializadas nesse tipo de tarefa. Este é o caso do Prometheus uma ferramenta opensource que é capaz de coletar e armazenar métricas de uma maneira eficaz.
+
+Uma prática amplamente utilizada no ambiente de microservices é a exposição de um endpoint que exponha as métricas do seu serviço, para que o prometheus colete e armazene a métrica.
+
+### Necessidades
+
+Configurar os endpoints para a coleta de métricas no prometheus e fazer com que o prometheus colete sua métrica.
+
+### Resultado Esperado
+
+Métricas armazenada no Prometheus. Consultar via interface gráfica

@@ -7,6 +7,8 @@ services:
     restart: always
     ports:
       - 3309:3306
+    networks:
+      - proposta
     environment:
       - MYSQL_DATABASE=proposta
       - MYSQL_ROOT_PASSWORD=Zup@2206
@@ -20,11 +22,18 @@ services:
       - db
     ports:
       - 8080:8080
+    networks:
+      - proposta
     depends_on:
       - db
     environment:
       - BANCO_URL=jdbc:mysql://db:3306/proposta
-      - CARTAO_CLIENT=http://172.28.0.1:8888
-      - CONSULTA_CLIENT=http://172.28.0.1:9999
+      - CARTAO_CLIENT=http://contas:8888
+      - CONSULTA_CLIENT=http://analise:9999
 volumes:
   mysql:
+
+networks:
+  proposta:
+    name: rede_proposta
+    driver: bridge
