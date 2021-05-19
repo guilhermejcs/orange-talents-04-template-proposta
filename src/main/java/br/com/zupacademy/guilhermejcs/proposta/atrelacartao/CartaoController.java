@@ -31,14 +31,14 @@ public class CartaoController {
     @GetMapping(value = "/cartoes")
     @Transactional
     @Scheduled(fixedDelayString = "${periodicidade.atrela-cartao}")
-    public ResponseEntity<?> atrelaCartao() {
+    public ResponseEntity<?> atrelaCartao() throws Exception {
         List<Proposta> propostas = novaPropostaRepository.findByCartaoAndStatus(null, Avaliacao.ELEGIVEL);
 
         List<String> atualizadas = new ArrayList<>();
         List<String> naoAtualizadas = new ArrayList<>();
 
         for (Proposta proposta : propostas) {
-            CartaoRequest request = new CartaoRequest(proposta.getDocumento(), proposta.getNome(), proposta.getId());
+            CartaoRequest request = new CartaoRequest(proposta.getDoc(), proposta.getNome(), proposta.getId());
 
             Optional<CartaoResponse> numeroCartao = null;
             try {

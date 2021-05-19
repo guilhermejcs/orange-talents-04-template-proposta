@@ -580,3 +580,25 @@ Configurar os endpoints para a coleta de métricas no prometheus e fazer com que
 ### Resultado Esperado
 
 Métricas armazenada no Prometheus. Consultar via interface gráfica
+
+------
+
+## Armazenando o documento do nosso cliente de modo seguro!!!
+
+### Tag: v105
+
+### Objetivo
+
+Proteger os dados sensíveis dos nossos clientes.
+
+### Necessidades
+
+Armazenar o documento do cliente de maneira criptografada.
+
+### Restrições
+
+- Não deve ser possível identificar o documento do cliente na base de dados.
+
+### Resultado Esperado
+
+- O documento deve ser armazenado criptografado no banco de dados.

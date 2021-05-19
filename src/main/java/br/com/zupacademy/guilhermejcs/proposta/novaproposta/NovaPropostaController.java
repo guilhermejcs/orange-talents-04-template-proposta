@@ -1,5 +1,6 @@
 package br.com.zupacademy.guilhermejcs.proposta.novaproposta;
 
+import br.com.zupacademy.guilhermejcs.proposta.criptografadados.EncriptaDecriptaAES;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,10 +27,12 @@ public class NovaPropostaController {
     @PostMapping
     @Transactional
     public ResponseEntity<?> criaProposta(
-            @RequestBody @Valid NovaPropostaRequest request, UriComponentsBuilder builder) {
+            @RequestBody @Valid NovaPropostaRequest request, UriComponentsBuilder builder) throws Exception {
+
+        byte[] doc = EncriptaDecriptaAES.encrypt(request.getDocumento());
 
         Optional<Proposta> possivelProposta = novaPropostaRepository
-                .findByDocumento(request.getDocumento());
+                .findByDocumento(doc);
         if (possivelProposta.isPresent()) {
             return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY)
                     .body("Já existe uma proposta para esse CPF/CNPJ");
@@ -42,7 +45,7 @@ public class NovaPropostaController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?>  consulta(@PathVariable("id") Long id){
+    public ResponseEntity<?>  consulta(@PathVariable("id") Long id) throws Exception {
         Optional<Proposta> proposta = novaPropostaRepository.findById(id);
         if(proposta.isPresent()){
             ConsultaPropostaResponse dto = new ConsultaPropostaResponse();

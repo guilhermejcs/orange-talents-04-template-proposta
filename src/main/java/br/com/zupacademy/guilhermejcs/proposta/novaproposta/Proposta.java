@@ -1,10 +1,12 @@
 package br.com.zupacademy.guilhermejcs.proposta.novaproposta;
 
 import br.com.zupacademy.guilhermejcs.proposta.atrelacartao.Cartao;
+import br.com.zupacademy.guilhermejcs.proposta.criptografadados.EncriptaDecriptaAES;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import java.math.BigDecimal;
 
@@ -19,9 +21,8 @@ public class Proposta {
     private @NotBlank String nome;
     private @NotBlank String endereco;
     private @Positive BigDecimal salario;
-    @CpfCnpj
-    @NotBlank
-    private String documento;
+    @NotNull
+    private byte[] documento;
     @Enumerated(EnumType.STRING)
     private Avaliacao status;
     @OneToOne(mappedBy = "proposta",cascade = CascadeType.MERGE)
@@ -34,7 +35,7 @@ public class Proposta {
                     @NotBlank String nome,
                     @NotBlank String endereco,
                     @Positive BigDecimal salario,
-                    @CpfCnpj String documento) {
+                    @NotNull byte[] documento) {
         this.email = email;
         this.nome = nome;
         this.endereco = endereco;
@@ -62,10 +63,6 @@ public class Proposta {
         return salario;
     }
 
-    public String getDocumento() {
-        return documento;
-    }
-
     public Avaliacao getStatus() {
         return status;
     }
@@ -74,6 +71,17 @@ public class Proposta {
         return cartao;
     }
 
+    public String getDoc() throws Exception {
+        return EncriptaDecriptaAES.decrypt(documento);
+    }
+
+    public byte[] getDocumento() {
+        return documento;
+    }
+
+    public void setDocumento(byte[] documento) {
+        this.documento = documento;
+    }
 
     public void setEmail(String email) {
         this.email = email;
@@ -89,10 +97,6 @@ public class Proposta {
 
     public void setSalario(BigDecimal salario) {
         this.salario = salario;
-    }
-
-    public void setDocumento(String documento) {
-        this.documento = documento;
     }
 
     public void setStatus(Avaliacao status) {

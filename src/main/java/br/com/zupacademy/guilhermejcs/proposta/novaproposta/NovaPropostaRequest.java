@@ -1,5 +1,7 @@
 package br.com.zupacademy.guilhermejcs.proposta.novaproposta;
 
+import br.com.zupacademy.guilhermejcs.proposta.criptografadados.EncriptaDecriptaAES;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -18,8 +20,8 @@ public class NovaPropostaRequest {
     @NotNull
     @Positive
     private BigDecimal salario;
-    @CpfCnpj
     @NotBlank
+    @CpfCnpj
     private String documento;
 
     public NovaPropostaRequest(@Email @NotBlank String email,
@@ -34,8 +36,8 @@ public class NovaPropostaRequest {
         this.documento = documento;
     }
 
-    public Proposta toModel() {
-        return new Proposta(email, nome, endereco, salario, documento);
+    public Proposta toModel() throws Exception {
+        return new Proposta(email, nome, endereco, salario, EncriptaDecriptaAES.encrypt(documento));
     }
 
     public String getDocumento() {

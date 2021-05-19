@@ -8,10 +8,10 @@ public class ConsultaPropostaResponse {
     private String status;
     private String cartao;
 
-    public void atribuirDados(Proposta proposta) {
+    public void atribuirDados(Proposta proposta) throws Exception {
         this.id = proposta.getId().toString();
         this.nome = proposta.getNome();
-        this.documento = proposta.getDocumento();
+        this.documento = proposta.getDoc();
         if (proposta.getStatus()==null) {
             this.status = "Não avaliada";
         } else {

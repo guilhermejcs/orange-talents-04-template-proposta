@@ -74,6 +74,6 @@ public class AssociaCarteiraController {
 
         URI uri = uriComponentsBuilder.path("/api/cartoes/{id}/carteiras/{carteiraDigital}/{idCarteira}")
                 .build(id, carteira, idCarteira);
-        return ResponseEntity.created(uri).body("Carteira " + carteira + "Criado com o id " + idCarteira);
+        return ResponseEntity.created(uri).body("Carteira " + carteira + " criada com o id " + idCarteira);
     }
 }

@@ -2,21 +2,17 @@ package br.com.zupacademy.guilhermejcs.proposta.novaproposta;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
-import java.lang.annotation.Documented;
-import java.lang.annotation.Retention;
-import java.lang.annotation.Target;
+import java.lang.annotation.*;
 
-import static java.lang.annotation.ElementType.FIELD;
-import static java.lang.annotation.ElementType.PARAMETER;
-import static java.lang.annotation.RetentionPolicy.RUNTIME;
-
-@Documented
 @Constraint(validatedBy = {CpfCnpjValidator.class})
-@Target({ FIELD, PARAMETER})
-@Retention(RUNTIME)
+@Target({ElementType.FIELD, ElementType.PARAMETER})
+@Retention(value = RetentionPolicy.RUNTIME)
+@Documented
 public @interface CpfCnpj {
 
-    String message() default "Número do documento inválido";
-    Class<?>[] groups() default { };
-    Class<? extends Payload>[] payload() default { };
+    String message() default "CPF/CNPJ inválido";
+
+    Class<?>[] groups() default {};
+
+    Class<? extends Payload>[] payload() default {};
 }
